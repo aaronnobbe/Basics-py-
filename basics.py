@@ -1,5 +1,4 @@
-# Python Basics for Coding Assessments
-
+# Python Basics 
 # 1. Reverse a String
 def reverse_string(s):
     return s[::-1]
@@ -28,7 +27,19 @@ def generate_squares(n):
 def is_palindrome(s):
     return s == s[::-1]
 
-# 8. Bubble Sort
+# 8. Check for Balanced Parentheses
+def is_balanced(s):
+    stack = []
+    for char in s:
+        if char == '(':
+            stack.append(char)
+        elif char == ')':
+            if not stack:
+                return False
+            stack.pop()
+    return not stack
+
+# 9. Bubble Sort
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -37,14 +48,14 @@ def bubble_sort(arr):
                 arr[j], arr[j+1] = arr[j+1], arr[j]
     return arr
 
-# 9. Linear Search
+# 10. Linear Search
 def linear_search(arr, target):
     for i, value in enumerate(arr):
         if value == target:
             return i
     return -1
 
-# 10. Binary Search (requires sorted list)
+# 11. Binary Search (requires sorted list)
 def binary_search(arr, target):
     left, right = 0, len(arr) - 1
     while left <= right:
@@ -56,6 +67,10 @@ def binary_search(arr, target):
         else:
             right = mid - 1
     return -1
+
+# 12. Merge Two Sorted Lists
+def merge_sorted_lists(list1, list2):
+    return sorted(list1 + list2)
 
 # Unified Input Handling
 print("Welcome to the Python Basics Program!")
@@ -86,6 +101,10 @@ print(f"Squares of numbers from 1 to {n}:", generate_squares(n))
 string_to_check = input("Enter a string to check if it's a palindrome: ")
 print(f"Is '{string_to_check}' a palindrome?", is_palindrome(string_to_check))
 
+# Check for Balanced Parentheses
+parentheses_string = input("Enter a string to check for balanced parentheses: ")
+print(f"Is the string '{parentheses_string}' balanced?", is_balanced(parentheses_string))
+
 # Bubble Sort
 numbers_list = list(map(int, input("Enter numbers separated by spaces to sort (Bubble Sort): ").split()))
 print("Sorted List (Bubble Sort):", bubble_sort(numbers_list))
@@ -107,3 +126,9 @@ if index != -1:
     print(f"Number found at index {index}.")
 else:
     print("Number not found.")
+
+# Merge Two Sorted Lists
+list1 = list(map(int, input("Enter the first sorted list of numbers separated by spaces: ").split()))
+list2 = list(map(int, input("Enter the second sorted list of numbers separated by spaces: ").split()))
+merged_list = merge_sorted_lists(list1, list2)
+print(f"Merged and Sorted List: {merged_list}")
